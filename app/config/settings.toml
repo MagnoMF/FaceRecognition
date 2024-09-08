@@ -1,0 +1,16 @@
+title = "Environment Configuration"
+
+[dependencies]
+python = "^3.10.12"
+pydantic = "^2.8.2"
+fastapi = "^0.112.1"
+sqlalchemy = "^2.0.32"
+
+[owner]
+name = "face-recognition"
+version = "0.0.1"
+description = ""
+authors = ["Eu"]
+
+[database]
+url = "postgresql://admin:baguvix2015@localhost:5432/face-recognition"

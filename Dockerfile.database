@@ -1,0 +1,11 @@
+FROM postgres:15.8
+RUN apt-get update
+RUN apt-get install bash \
+    tzdata \
+    make -y \
+    build-essential -y \
+    git -y \
+    postgresql-server-dev-15
+RUN cd /tmp && git clone --branch v0.7.4 https://github.com/pgvector/pgvector.git  
+RUN cd /tmp/pgvector && make install
+RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime

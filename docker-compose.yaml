@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+  face-database:
+    container_name: face-database
+    build:
+      context: .
+      dockerfile: Dockerfile.database
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DATABASE}
+      - POSTGRES_USER=${DB_USER}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db_scripts:/docker-entrypoint-initdb.d
+    restart: always
+  
+  pg-admin:
+    container_name: pg-admin
+    image: dpage/pgadmin4:8.10
+    env_file:
+      - ./.env
+    volumes:
+      - pg_admin:/var/lib/postgresql/data
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=magno.ferreira@megaimagem.com.br
+      - PGADMIN_DEFAULT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 8000:80
+
+volumes:
+  db_data:
+  pg_admin:
