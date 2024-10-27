@@ -6,9 +6,8 @@ import services.pictures as PictureService
 router = APIRouter()
 
 @router.post("/create_user", tags=["user"])
-def create_user(ds_name: str, cd_role: int, img_upload: UploadFile = File(...)):
-    print(ds_name, cd_role)
-    new_user = UserService.create(ds_name, cd_role)
+def create_user(ds_name: str, city: str, img_upload: UploadFile = File(...)):
+    new_user = UserService.create(ds_name, city)
     PictureService.create(cd_user=new_user.cd_user, img_upload=img_upload)
     return new_user
 

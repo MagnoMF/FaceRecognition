@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
   face-database:
@@ -27,7 +27,7 @@ services:
     volumes:
       - pg_admin:/var/lib/postgresql/data
     environment:
-      - PGADMIN_DEFAULT_EMAIL=magno.ferreira@megaimagem.com.br
+      - PGADMIN_DEFAULT_EMAIL=${DB_EMAIL_LOGIN}
       - PGADMIN_DEFAULT_PASSWORD=${DB_PASSWORD}
     ports:
       - 8000:80
